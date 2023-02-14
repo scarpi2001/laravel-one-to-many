@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
 
-            $table->bigInteger('person_id')->unsigned();
-
             // $table-> bigInteger('person_id')->unsigned();
             // $table->foreign('person_id')
             //       ->references('id')
@@ -27,14 +25,12 @@ return new class extends Migration
             
         });
 
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person_details', function (Blueprint $table) {
 
-            $table->bigInteger('person_id')->unsigned();
+            $table->primary('person_id'); 
 
             $table->foreignId('person_id')
                   ->constrained();
-
-            $table->primary('person_id'); 
             
         });
     }
@@ -52,7 +48,7 @@ return new class extends Migration
             $table->dropColumn('person_id');
         });
 
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person_details', function (Blueprint $table) {
 
             $table->dropForeign('person_details_person_id_foreign');
             $table->dropColumn('person_id');
